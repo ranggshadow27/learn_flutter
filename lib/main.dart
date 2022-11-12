@@ -28,13 +28,20 @@ class LearnMapping extends StatelessWidget {
       body: ListView.builder(
         itemCount: 20,
         itemBuilder: (context, index) => Container(
+          width: MediaQuery.of(context).size.width,
+          height: 100,
           color: Color.fromARGB(
             255,
-            120 + Random().nextInt(256),
-            120 + Random().nextInt(256),
-            120 + Random().nextInt(256),
+            200 + Random().nextInt(256),
+            200 + Random().nextInt(256),
+            200 + Random().nextInt(256),
           ),
-          child: Text('Column Number ${index + 1}'),
+          child: Center(
+            child: Text(
+              'Column Number ${index + 1}',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
     );
