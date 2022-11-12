@@ -31,6 +31,19 @@ class LearnMapping extends StatelessWidget {
     ),
   );
 
+  List<Map<String, dynamic>> data = List.generate(
+    20,
+    (index) => {
+      'text': 'Column No. ${index + 1}',
+      'warna': Color.fromARGB(
+        255,
+        200 + Random().nextInt(256),
+        200 + Random().nextInt(256),
+        200 + Random().nextInt(256),
+      ),
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +59,14 @@ class LearnMapping extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: dataKotak,
+          children: data
+              .map(
+                (e) => KotakWarna(
+                  text: e['text'],
+                  warna: e['warna'],
+                ),
+              )
+              .toList(),
         ),
       ),
     );
