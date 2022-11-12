@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/widgets/kotak_warna.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,37 +12,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: LearnMapping(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class LearnMapping extends StatelessWidget {
-  const LearnMapping({super.key});
+  List<KotakWarna> dataKotak = List.generate(
+    20,
+    (index) => KotakWarna(
+      text: 'Column No. ${index + 1}',
+      warna: Color.fromARGB(
+        255,
+        200 + Random().nextInt(256),
+        200 + Random().nextInt(256),
+        200 + Random().nextInt(256),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
-        title: Text("Learn Mapping"),
+        title: Text(
+          "Learn Mapping",
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
       ),
-      body: ListView.builder(
-        itemCount: 20,
-        itemBuilder: (context, index) => Container(
-          width: MediaQuery.of(context).size.width,
-          height: 100,
-          color: Color.fromARGB(
-            255,
-            200 + Random().nextInt(256),
-            200 + Random().nextInt(256),
-            200 + Random().nextInt(256),
-          ),
-          child: Center(
-            child: Text(
-              'Column Number ${index + 1}',
-              textAlign: TextAlign.center,
-            ),
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: dataKotak,
         ),
       ),
     );
