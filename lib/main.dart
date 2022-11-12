@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -22,6 +24,18 @@ class LearnMapping extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Learn Mapping"),
+      ),
+      body: ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, index) => Container(
+          color: Color.fromARGB(
+            255,
+            120 + Random().nextInt(256),
+            120 + Random().nextInt(256),
+            120 + Random().nextInt(256),
+          ),
+          child: Text('Column Number ${index + 1}'),
+        ),
       ),
     );
   }
